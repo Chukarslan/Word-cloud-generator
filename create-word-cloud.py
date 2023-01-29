@@ -2,6 +2,7 @@ import os
 import PyPDF2
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import datetime
 
 pdf_files = [file for file in os.listdir() if file.endswith('.pdf')]
 
@@ -17,5 +18,8 @@ wordcloud = WordCloud().generate(text)
 
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
-plt.show()
 
+timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+plt.savefig(f"cloud_{timestamp}.png")
+
+plt.show()
